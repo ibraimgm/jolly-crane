@@ -13,7 +13,7 @@ type controller struct{}
 
 func (c *controller) SetupRoutes(router gin.IRouter) {
 	router.POST("/hash", func(c *gin.Context) {
-		var input *TextHash
+		input := &TextHash{}
 		var err error
 
 		if err = c.ShouldBindJSON(input); err != nil {
