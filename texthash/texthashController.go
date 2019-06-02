@@ -7,11 +7,26 @@ import (
 	"github.com/ibraimgm/jolly-crane/rest"
 )
 
+var service = NewService(NewInMemRepository())
+
 type controller struct{}
 
 func (c *controller) SetupRoutes(router gin.IRouter) {
 	router.POST("/hash", func(c *gin.Context) {
-		c.String(http.StatusOK, "save?")
+		var input *TextHash
+		var err error
+
+		if err = c.ShouldBindJSON(input); err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+			return
+		}
+
+		if input, err = service.Create(input); err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+			return
+		}
+
+		c.JSON(http.StatusOK, input)
 	})
 
 	router.GET("/hashes/:hash", func(c *gin.Context) {
