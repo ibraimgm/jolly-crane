@@ -29,12 +29,12 @@ func (s *serviceImpl) Create(textHash *TextHash) (*TextHash, error) {
 	return saved, nil
 }
 
-func (s *serviceImpl) FindByHash(hash string) (*TextHash, error) {
-	return nil, nil
+func (s *serviceImpl) FindByHash(hash string) *TextHash {
+	return s.repo.FindByHash(hash)
 }
 
 func (s *serviceImpl) FindAll() []*TextHash {
-	return nil
+	return s.repo.FindAll()
 }
 
 // NewService retorna um novo serviço para a API de hashes, usando o

@@ -31,11 +31,18 @@ func (c *controller) SetupRoutes(router gin.IRouter) {
 
 	router.GET("/hashes/:hash", func(c *gin.Context) {
 		hash := c.Param("hash")
-		c.String(http.StatusOK, "find %s?", hash)
+		found := service.FindByHash(hash)
+
+		if found == nil {
+			c.JSON(http.StatusNotFound, gin.H{"error": "Not found."})
+			return
+		}
+
+		c.JSON(http.StatusOK, found)
 	})
 
 	router.GET("/hashes", func(c *gin.Context) {
-		c.String(http.StatusOK, "list?")
+		c.JSON(http.StatusOK, service.FindAll())
 	})
 }
 

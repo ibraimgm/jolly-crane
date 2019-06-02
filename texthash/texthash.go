@@ -10,7 +10,7 @@ type TextHash struct {
 // Service é um serviço que expõe as operações da API de TextHash
 type Service interface {
 	Create(textHash *TextHash) (*TextHash, error)
-	FindByHash(hash string) (*TextHash, error)
+	FindByHash(hash string) *TextHash
 	FindAll() []*TextHash
 }
 
