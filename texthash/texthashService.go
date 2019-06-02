@@ -25,6 +25,7 @@ func (s *serviceImpl) Create(textHash *TextHash) (*TextHash, error) {
 	}
 
 	saved := s.repo.FindByHash(textHash.Hash)
+	saved.Token = ""
 	return saved, nil
 }
 

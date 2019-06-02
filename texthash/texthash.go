@@ -4,7 +4,7 @@ package texthash
 type TextHash struct {
 	Token     string `json:"token,omitempty"`
 	Hash      string `json:"hash,omitempty"`
-	CreatedAt string `json:"createdAt,omitempty"`
+	CreatedAt string `json:"created_at,omitempty"`
 }
 
 // Service é um serviço que expõe as operações da API de TextHash

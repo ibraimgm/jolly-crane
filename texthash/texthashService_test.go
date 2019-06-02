@@ -36,6 +36,10 @@ func TestCreate(t *testing.T) {
 		if created.CreatedAt == "" {
 			t.Errorf("Case %v, createdAt should not be empty.", i)
 		}
+
+		if created.Token != "" {
+			t.Errorf("Case %v, token should be null", i)
+		}
 	}
 }
 
