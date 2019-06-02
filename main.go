@@ -2,14 +2,15 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
+	"github.com/ibraimgm/jolly-crane/admin"
+	"github.com/ibraimgm/jolly-crane/texthash"
 )
 
 func main() {
 	r := gin.Default()
 
-	r.GET("/check", func(c *gin.Context) {
-		c.JSON(200, gin.H{"message": "It works!"})
-	})
+	admin.Controller().SetupRoutes(r.Group("/admin"))
+	texthash.Controller().SetupRoutes(r)
 
 	r.Run()
 }

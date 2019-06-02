@@ -1,5 +1,6 @@
 {
   "[go]": {
     "editor.formatOnSave": true
-  }
+  },
+  "go.inferGopath": false
 }
