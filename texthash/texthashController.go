@@ -44,6 +44,17 @@ func (c *controller) SetupRoutes(router gin.IRouter) {
 	router.GET("/hashes", func(c *gin.Context) {
 		c.JSON(http.StatusOK, service.FindAll())
 	})
+
+	// Para facilitar os testes
+	router.GET("/demo", func(c *gin.Context) {
+		tokens := []string{"frodo", "sam", "merry", "pippin"}
+
+		for _, token := range tokens {
+			service.Create(&TextHash{Token: token})
+		}
+
+		c.JSON(http.StatusOK, gin.H{"message": "Done."})
+	})
 }
 
 // Controller retorna o controller necessário para setar as rotas
